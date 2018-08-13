@@ -1,25 +1,22 @@
-![cf](http://i.imgur.com/7v5ASc8.png) Code Fellows Seattle, Python 401d9
-=====================================
-> Advanced Software Development
+# Snake Cafe
 
-[![](https://img.shields.io/badge/canvas-401d9-blue.svg)](https://canvas.instructure.com/courses/1380083)
-[![](https://img.shields.io/badge/slack-401d9-orange.svg)]()
+**Author**: Liz Mahoney
+**Version**: 1.0.0 (increment the patch/fix version number up if you make more commits past your first submission)
 
+## Overview
+<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for a Code Fellows 401 class. (i.e. What's your problem domain?) -->
+This functionality of a point of sale restaurant system using basic Python tools and understanding of the basics of the language.
+## Getting Started
+<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
 
-# Welcome
+## Architecture
+<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. This is also an area which you can include any visuals; flow charts, example usage gifs, screen captures, etc.-->
 
-Welcome to Code 401 Python! This is a class that builds on your fundamental Python programming knowledge to make you a proficient full-stack Python developer, and to prepare you for getting a job in today's Python job market!
+## API
+<!-- Provide detailed instructions for your applications usage. This should include any methods or endpoints available to the user/client/developer. Each section should be formatted to provide clear syntax for usage, example calls including input data requirements and options, and example responses or return values. -->
 
-# Introduction
-In this class we are going to cover a lot of advanced web development topics. The first 5 weeks of this course will be dedicated to learning how to write pythonic code using idustry-standard tools. In this section of the course you will learn to create authenticated services with persistent storage, as well as the common tools and practices used in Data Science and Machine Learning. In the second 5 weeks of this course we will be focusing on learning advanced web development skills using Django, a web framework. In this section of the course we will further you understanding of building web applications and the processes commonly used from the ideation phase all the way through to deploying to a production platform.
+## Change Log
+<!-- Use this are to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
-# Course Layout
-This course has been organized and structured to spread across 10 weeks. With the exception of project weeks, each week will have 5 lecture/lab units. The class schedule is Monday-Friday from 9am - 6pm. Lecture will take place from 9am - 12pm daily and lab time is scheduled from 1pm - 6pm.  You are welcome to leave after lab time or can stick around as there will likely be a TA, or support staff, available.
-
-# Lecture Code
-Each day of class will include a new directory created named after the class number, and the topics covered that day, _e.g._ `class-01-intro-to-python`.  After each lecture the code demos from class will be placed in a `demo` directory, with a correlated naming convention to make things easy to locate.  There will also be a daily outline `README` that displays the high-level topics and objectives for that day.
-
-# Assignments
-All readings, homework, labs, and quizzes will be published, in Canvas, at least a week before they are assigned. All coding assignment instructions and materials will be organized into git repositories and will be published the day of the assignment.  Most assignments are due the same evening.
-# snakes_cafe
-# snakes_cafe
+01-01-2001 4:59pm - Added functionality to add and delete some things.
+-->
