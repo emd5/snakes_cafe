@@ -1,5 +1,4 @@
 from textwrap import dedent
-import sys
 
 WIDTH = 50
 MENU = {'Appetizers': ['Wings', 'Cookies', 'Spring Rolls'],
@@ -60,7 +59,7 @@ def run():
     while True:
         order_list = []
         menu_order = ask_question()
-        if check_input(menu_order,MENU) is True:
+        if check_input(menu_order, MENU) is True:
             order_list.append(menu_order)
             if menu_order in order_list:
                 order_counter += 1
@@ -69,7 +68,7 @@ def run():
 
         else:
             ask_question()
-              
+
 
 if __name__ == '__main__':
     run()
