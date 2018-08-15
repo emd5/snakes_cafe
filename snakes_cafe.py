@@ -1,6 +1,10 @@
 from textwrap import dedent
+from uuid import uuid4
+
 
 WIDTH = 50
+TAX = .106
+TOTALTAX = 1.10
 MENU = {'Appetizers': [{ 'Wings': 20.99},
                         {'Cookies': 1.50},
                         {'Spring Rolls': 2.00},
@@ -34,7 +38,7 @@ MENU = {'Appetizers': [{ 'Wings': 20.99},
                    {'Garlic': 9.35},
                    {'Biscuits': 6.50},
                    {'Mashed Tots': 7.00}
-                   ]
+                    ],
         }
 
 
@@ -76,12 +80,12 @@ def ask_question():
 
 
 def check_input(user_input):
-    """validates user input, otherwise exits program
+    """Validates user input, otherwise exits program
     """
     if user_input.lower() == "quit":
         exit()
         return
-    for k,v in MENU.items():
+    for k, v in MENU.items():
         for item in v:
             for key in item.keys():
                 if user_input.lower() == key.lower():
@@ -94,7 +98,7 @@ def find_item_price(user_input):
     for key, value in MENU.items():
         for price in value:
             for k, v in price.items():
-                if user_input  == k.lower():
+                if user_input == k.lower():
                     return(v)
 
 
@@ -110,7 +114,7 @@ def find_item_price(user_input):
     for key, value in MENU.items():
         for price in value:
             for k, v in price.items():
-                if user_input  == k.lower():
+                if user_input == k.lower():
                     return(v)
 
 
@@ -137,22 +141,27 @@ def print_receipt(order_list):
     total_price = calculate_total_price(total)
     print('*' * 50)
     print('The Snakes Cafe')
-    print('Eatability Counts')
+    print('"Eatability Counts"')
     print()
-    print('Order')  # UUID
+    print('Order: ' + str(uuid4()))  # UUID
     print('=' * 50)
     for items in total:
         print('{} x{} {:>40}'.format(items['item'], items['count'], items['total']))
         #items, count, price
     print('-' * 50)
     #subtotal
-    #sales tax
+    print('Subtotal {:>40}'.format(total_price))
+    #Sales Tax
+    print('Sales Tax {:>40}'.format(total_price * TAX))
     print('-' * 10)
-    print('Total {:>40}'.format(total_price))
+    print('Total {:>40}'.format(total_price* TOTALTAX))
     print('*' * 50)
 
 
 def run():
+    """The function which excutes the program
+    """
+
     greeting()
     order_list = {}
 
@@ -162,6 +171,8 @@ def run():
             print_receipt(order_list)
         elif menu_order == 'menu':
             print_menu()
+        elif menu_order == 'category':
+            print('category')
         elif 'remove' in menu_order:
             #remove single item from list
             pass
