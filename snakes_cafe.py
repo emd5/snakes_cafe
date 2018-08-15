@@ -5,7 +5,7 @@ MENU = {'Appetizers': ['Wings', 'Cookies', 'Spring Rolls'],
         'Entrees': ['Salmon', 'Steak', 'Meat Tornado', 'A Literal Garden'],
         'Desserts': ['Ice Cream', 'Cake', 'Pie'],
         'Drinks': ['Coffee', 'Tea', 'Blood of the Innocent'],
-}
+        }
 
 
 def greeting():
@@ -30,11 +30,11 @@ def greeting():
         print('-' * 10)
         for item in v:
             print(item)
-        print()
-    
-    print('***********************************')
+            print()
+
+    print('*' * 35)
     print('** What would you like to order? **')
-    print('***********************************')
+    print('*' * 35)
 
 
 def ask_question():

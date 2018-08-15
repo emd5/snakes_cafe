@@ -1,5 +1,4 @@
-# Snake Cafe
-
+# Snakes Cafe
 **Author**: Liz Mahoney                                                   
 **Version**: 1.0.0 (increment the patch/fix version number up if you make more commits past your first submission)
 
@@ -9,6 +8,6 @@ This functionality of a point of sale restaurant system using basic Python tools
 
 
 ## API
-This is a python script
+This program python script
 
 
