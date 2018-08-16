@@ -12,3 +12,7 @@ This functionality of a point of sale restaurant system using basic Python tools
 This is a python script
 
 
+## CHANGELOG
+2018-08-15 . Added categories option for when user inputs a category selection
+
+
