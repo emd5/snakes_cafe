@@ -379,21 +379,32 @@ def print_category_details(category):
 
 
 def ask_question():
+    print('type "man" for help')
     return input('>').lower()  #check here IF BROKEN INPUT!!!!!!!!
 
 
 def print_categories():
     """A function that prints a list of categories from the menu
     """
+    print('-'* 20)
+    print('Here are a list of the category Menus')
+    print('-'* 20)
     for category in CATEGORIES:
-        print('-'* 20)
-        print('Here are a list of the category Menus')
-        print('-'* 20)
         print(category)
 
 
+def print_manual():
+      print('Type "menu" for menu options')
+      print('Type "category" for menu categories')
+      print('Type any categories for for a detailed list of items')
+      print('Type any food items to add to your order [BUGGY]')
+      print('Type "remove" <food item> to remove an item [BUGGY]')
+      print('Type "remove" <food item> to remove an item [BUGGY]')
+
+
 def check_input(user_input):
-    """Validates user input, otherwise exits program
+    """Function that returns a boolean when user input is in the menu data, 
+    otherwise exits program
     """
     if user_input.lower() == "quit":
         exit('***   Thank you for Eating with Us! *** ')
@@ -406,8 +417,8 @@ def check_input(user_input):
         ask_question()
    
 
-def add_food_order(user_input):
-    item_quantity = user_input.split()
+def add_food_order(user_input): #bug must fix logic when an item has two words cannot split ie Key Lime 20
+    item_quantity = user_input.lower().split()
     try:
         for food in MENU:
             if len(item_quantity) > 1 and item_quantity[0].lower() == food['item'].lower():  #if user enters a space
@@ -422,16 +433,17 @@ def add_food_order(user_input):
                 return [food['item'], food['quantity']]
     except ValueError:
         print('Enter a valid selection')
-        ask_question()
+        return run()
 
 
 def remove_food_order(user_input):
-    item = user_input.split()[1]
+    """ Function that takes a user input argument and compares to the menu data
+    """
     for food in MENU:
-        if item == food['item']:
+        if user_input == food['item']:
             if food['quantity'] > 0:
                 food['quantity'] -= 1
-                print('{} order of {} have been removed'.format(food['quantity'],item))
+                print('{} order of {} have been removed'.format(food['quantity'], user_input))
                 print()
                 
             else:
@@ -476,16 +488,18 @@ def run():
     """The function which excutes the program
     """
     greeting()
-
+    
     while True:
         user_input = ask_question()
         if user_input == 'order':
             print_receipt()
+        elif user_input == 'man':
+            print_manual()
         elif user_input == 'menu':
             print_menu()
         elif user_input == 'category':  # prints a list of category menu 
             print_categories()
-        elif user_input.capitalize in CATEGORIES:  # must print details of a menu category
+        elif user_input in CATEGORIES:  # must print details of a menu category
             print_category_details(user_input)
         elif 'remove' in user_input:
             remove_food_order(user_input)
