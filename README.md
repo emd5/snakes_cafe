@@ -14,7 +14,7 @@ This functionality of a point of sale restaurant system using basic Python tools
 
 ## CHANGELOG
 
-2018-08-15 
+### 2018-08-15 
 ======
 
 - Added categories option for when user inputs a category selection.
@@ -22,4 +22,7 @@ This functionality of a point of sale restaurant system using basic Python tools
 - Each function was changed based from the new menu data structure.
 
 
-
+### 2018-08-16 
+======
+- Addressed and fixed bugs in add and remove methods
+- Pytest add & remove methods
