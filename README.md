@@ -1,5 +1,4 @@
-# Snake Cafe
-
+# Snakes Cafe
 **Author**: Liz Mahoney                                                   
 **Version**: 1.0.0 (increment the patch/fix version number up if you make more commits past your first submission)
 
@@ -21,5 +20,6 @@ This functionality of a point of sale restaurant system using basic Python tools
 - Refactored menu data structure to a dictionaries inside of a list.
 - Each function was changed based from the new menu data structure.
 
+This program python script
 
 

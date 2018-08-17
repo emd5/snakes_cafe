@@ -114,4 +114,8 @@ venv.bak/
 .mypy_cache/
 
 # data
+<<<<<<< HEAD
 curriculum/class-06/API_NY.GDP.PCAP.CD_DS2_en_csv_v2.csv
+=======
+curriculum/class-06/API_NY.GDP.PCAP.CD_DS2_en_csv_v2.csv
+>>>>>>> 75c4de6e87616a6e29e81ab4e798a2e235ff1035
