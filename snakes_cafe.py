@@ -1,5 +1,6 @@
 from textwrap import dedent
 from uuid import uuid4
+import csv
 
 
 WIDTH = 50
@@ -197,7 +198,7 @@ MENU = [
     'item': 'Meat Tornado',
     'quantity': 0,
     'price': 16.25,
-  }, 
+  },
   {
     'category': 'entrees',
     'item': 'A Literal Garden',
@@ -292,6 +293,43 @@ MENU = [
 CATEGORIES = ['Appetizers', 'Sides', 'Entrees', 'Drinks', 'Desserts']
 
 
+class Order:
+
+    def __init__(self, uuid):
+        self.receipt = {'subtotal':0}
+        self.id = str(uuid.uuid4())
+
+    def __repr__(self):
+        return 'Order {} | Items: {} | Total: {}'.format(self.id, self.receipt['subtotal'], len(self.receipt))
+
+
+    def __len__(self):
+        return len(self.receipt)
+
+
+    def order_uuid():
+        return uuid4
+
+
+    def add_item():
+        pass
+
+
+    def remove_item():
+        pass
+
+
+    def display_order():
+        pass
+
+
+    def print_receipt():
+        pass
+        # write new file to a relative path
+        # with open (f'order-{current.id}.txt', 'w') as f:
+        # f.write(receipt_file)
+
+
 def greeting():
     """Function which will greet the user when the application executes for
     the first time.
@@ -308,8 +346,7 @@ def greeting():
         {(' ' * ((WIDTH - len(ln_three)) // 2)) + ln_three + (' ' * ((WIDTH - len(ln_three)) // 2))}
         {'*' * WIDTH}
     '''))
-    print_default_menu()
-
+    # print_default_menu()
 # function to load a custom menu from csv file
 
 
@@ -319,7 +356,24 @@ def print_default_menu():  # a default menu from above and an imported csv file
     print('*' * 38)
     print('**   What would you like to order?   **')
     print('*' * 38)
-    print('type "man" for help')
+    # print('type "man" for help')
+
+
+def print_custom_menu():
+    custom_menu_list = []
+    with open('./menu.csv', 'r') as rows:
+        try:
+            read = csv.DictReader(rows)
+            for row in read:
+                item = {}
+                item['category'] = row['category']
+                item['item'] = row['item']
+                item['quantity'] = row['quantity']
+                item['price'] = row['price']
+                custom_menu_list.append(item)
+            return custom_menu_list
+        except(IndexError, FileNotFoundError):
+            print('File not found')
 
 
 def print_category_details(category):
@@ -333,6 +387,11 @@ def print_category_details(category):
 
 def ask_question():
     return input(' > ').lower().strip()  # check here IF BROKEN INPUT!!!!!!!!
+
+
+def ask_menu_option():
+    print('Which menu would you like?')
+    print('Enter "default" or "custom"')
 
 
 def print_categories():
@@ -349,12 +408,12 @@ def print_manual():
       print('Type "menu" for menu options')
       print('Type "category" for menu categories')
       print('Type any categories for for a detailed list of items')
-      print('Type any food items to add to your order [BUGGY]')
-      print('Type "remove" <food item> to remove an item [BUGGY]')
+      print('Type any <food items> to add to your order')
+      print('Type "remove" <food item> to remove an item')
 
 
 def check_input(user_input):
-    """Function that returns a boolean when user input is in the menu data, 
+    """Function that returns a boolean when user input is in the menu data,
     otherwise exits program
     """
     if user_input.lower() == "quit":
@@ -366,12 +425,10 @@ def check_input(user_input):
     else:
         return
 
-        
+
 def add_food_order(user_input): #bug must fix logic when an item has two words cannot split ie Key Lime 20
     whole_string = user_input.split()
-    print(whole_string)
     food_item = ' '.join(whole_string[:-1])
-    print(food_item)
     try:
         for food in MENU:
             if len(whole_string) > 1 and food_item.lower() == food['item'].lower():  #if user enters a space
@@ -383,7 +440,7 @@ def add_food_order(user_input): #bug must fix logic when an item has two words c
     except TypeError:
         print('Enter a valid selection')
         ask_question()
-        
+
 
 def remove_food_order(user_input):
     """ Function that takes a user input argument and compares to the menu data
@@ -393,7 +450,7 @@ def remove_food_order(user_input):
         # print(item.lower() + '== ' + food['item'].lower())  # test line
         try:
             if item.lower() == food['item'].lower():
-                if food['quantity'] > 0:      
+                if food['quantity'] > 0:
                     food['quantity'] -= 1
                     item_total()
                     print('{} order of {} have been removed'.format(food['quantity'], item))
@@ -442,31 +499,44 @@ def print_receipt():
 def run():
     """The function which excutes the program
     """
-    greeting()
-    
+    # greeting()
+    user_input = ask_menu_option()
+    # user_input = ask_question()
+    if user_input == "default":
+        print_default_menu()
+    else:
+        print_custom_menu()
+
     while True:
         user_input = ask_question()
-        
-        if user_input == 'order':
-            print_receipt()
-        elif user_input == 'man':
-            print_manual()
-        elif user_input == 'menu':
-            print_default_menu()
-        elif user_input == 'category': 
-            print_categories()
-        elif user_input.capitalize() in CATEGORIES:
-            print_category_details(user_input)
-        elif 'remove' in user_input:
-            remove_food_order(user_input)
-        elif check_input(user_input) is True:
-            item_added = add_food_order(user_input)
-            print('{} order of {} have been added to the meal'.format(item_added[0], item_added[1]))
-            print()
-        else:
-              print('Type "man" for options')
-       
 
+        if user_input == "default":
+            menu = print_default_menu()
+        elif user_input == "custom":
+            menu = print_custom_menu()
+
+        if user_input == 'menu':
+            return menu
+
+
+        # if user_input == 'order':
+        #     print_receipt()
+        # elif user_input == 'menu':
+        #     print(menu)
+        # elif user_input == 'man':
+        #     print_manual()
+        # elif user_input == 'category':
+        #         print_categories()
+        # elif user_input.capitalize() in CATEGORIES:
+        #     print_category_details(user_input)
+        # elif 'remove' in user_input:
+        #     remove_food_order(user_input)
+        # elif check_input(user_input) is True:
+        #     item_added = add_food_order(user_input)
+        #     print('{} order of {} have been added to the meal'.format(item_added[0], item_added[1]))
+        #     print()
+        # else:
+        #     print('Type "man" for options')
 
 
 if __name__ == '__main__':
