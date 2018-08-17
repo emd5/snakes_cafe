@@ -15,15 +15,17 @@ def test_add_food_item_lowercase():
 
 
 def test_add_food_item_with_two_words(): # bug
-    """ Test food item with two words
+    """
+    Test food item with two words
     """
     expect = ['Key Lime', 1]
-    actual = add_food_order('Key Lime')  
-    assert expect != actual
+    actual = add_food_order('Key Lime')
+    assert expect == actual
 
 
 def test_add_food_item_and_quantity():
-    """ Test user input with food item & quantity
+    """
+    Test user input with add food item & quantity
     """
     expect = ['Wings', 4]
     actual = add_food_order('wings 3')  # 1 + 3 = quantity
@@ -31,6 +33,17 @@ def test_add_food_item_and_quantity():
 
 
 def test_remove_food_item():
+    """
+    Test user input when remove a food item
+    """
     expect = ['Wings', 0 ]
     actual = remove_food_order('remove wings')
     assert expect == actual
+
+
+# def test_invalid_menu_print():
+#     """
+#     Test Exception for requesting invalid menu input
+#     """
+#     with pt.raises(Exception):
+#         sc.print_invalid_menu_option()
