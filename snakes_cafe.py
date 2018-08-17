@@ -292,6 +292,24 @@ MENU = [
 CATEGORIES = ['Appetizers', 'Sides', 'Entrees', 'Drinks', 'Desserts']
 
 
+class Order:
+      
+    def order_uuid():
+        return uuid4
+
+    def add_item():
+        pass
+
+    def remove_item():
+        pass
+
+    def display_order():
+        pass
+
+    def print_receipt():
+        pass
+      
+      
 def greeting():
     """Function which will greet the user when the application executes for
     the first time.
@@ -369,9 +387,7 @@ def check_input(user_input):
         
 def add_food_order(user_input): #bug must fix logic when an item has two words cannot split ie Key Lime 20
     whole_string = user_input.split()
-    print(whole_string)
     food_item = ' '.join(whole_string[:-1])
-    print(food_item)
     try:
         for food in MENU:
             if len(whole_string) > 1 and food_item.lower() == food['item'].lower():  #if user enters a space
@@ -383,8 +399,8 @@ def add_food_order(user_input): #bug must fix logic when an item has two words c
     except TypeError:
         print('Enter a valid selection')
         ask_question()
-        
 
+   
 def remove_food_order(user_input):
     """ Function that takes a user input argument and compares to the menu data
     """
