@@ -5,56 +5,6 @@ from uuid import uuid4
 WIDTH = 50
 TAX = .106
 TOTALTAX = 1.10
-# MENU = {'Appetizers': [{'Wings': 20.99},
-        #                 {'Cookies': 1.50},
-        #                 {'Spring Rolls': 2.00},
-        #                 {'Armadillo eggs': 4.35},
-        #                 {'Jalapeno Poppers': 10.50},
-        #                 {'Fries': 2.00},
-        #                 {'Alligator Skins': 2.00},
-        #                 {'Beef Jerky': 2.23},
-        #                 {'Eggrolls': 1.33}],
-        # 'Entrees': [{'Salmon': 20.99},
-        #             {'Steak': 1.50},
-        #             {'Meat Tornado': 2.00},
-        #             {'A Literal Garden': 4.35},
-        #             {'Surf and Turf': 10.50},
-        #             {'Ribeye': 2.00},
-        #             {'Lobster': 20.00},
-        #             {'Clams': 12.23},
-        #             {'Mussels': 15.00}],
-        # 'Desserts': [{'Ice cream': 1.99},
-        #              {'Cake': 2.50},
-        #              {'Pie': 2.99},
-        #              {'Cupcake': 3.35},
-        #              {'Macaroon': 5.50},
-        #              {'Coconut': 1.00},
-        #              {'Key Lime': 1.00},
-        #              {'Pumpkie Pis': 5.23},
-        #              {'Chocolate Chip Cookies': 10.00}],
-        # 'Drinks': [{'Coffee': 20.99},
-        #              {'Tea': 1.50},
-        #              {'Blood of the Innocent': 2.00},
-        #              {'Whiskey': 4.35},
-        #              {'Vodka': 10.50},
-        #              {'Sparkling Wine': 2.00},
-        #              {'Juice': 10.00},
-        #              {'Jungle Juice': 6.00},
-        #              {'Gin': 3.00},
-        #              {'Gin & Tonic': 4.00}],
-        # 'Sides': [{'Veggies': 5.99},
-        #             {'Fries': 2.50},
-        #             {'Potato': 2.00},
-        #             {'Garlic': 9.35},
-        #             {'Biscuits': 6.50},
-        #             {'Mashed Tots': 7.00},
-        #             {'Garlic': 9.35},
-        #             {'Biscuits': 6.50},
-        #             {'Mashed Tots': 3.00},
-        #             {'Chicken Bites': 9.00}],
-        # }
-
-
 MENU = [
   {
     'category': 'desserts',
@@ -339,6 +289,8 @@ MENU = [
     'price': 3.5,
   },
 ]
+CATEGORIES = ['Appetizers', 'Sides', 'Entrees', 'Drinks', 'Desserts']
+
 
 def greeting():
     """Function which will greet the user when the application executes for
@@ -356,17 +308,18 @@ def greeting():
         {(' ' * ((WIDTH - len(ln_three)) // 2)) + ln_three + (' ' * ((WIDTH - len(ln_three)) // 2))}
         {'*' * WIDTH}
     '''))
-    print_menu()
+    print_default_menu()
 
-CATEGORIES = ['Appetizers', 'Sides', 'Entrees', 'Drinks', 'Desserts']
+# function to load a custom menu from csv file
 
 
-def print_menu():
+def print_default_menu():  # a default menu from above and an imported csv file
     for category in CATEGORIES:
         print_category_details(category)
     print('*' * 38)
     print('**   What would you like to order?   **')
     print('*' * 38)
+    print('type "man" for help')
 
 
 def print_category_details(category):
@@ -379,8 +332,7 @@ def print_category_details(category):
 
 
 def ask_question():
-    print('type "man" for help')
-    return input('>').lower()  #check here IF BROKEN INPUT!!!!!!!!
+    return input(' > ').lower().strip()  # check here IF BROKEN INPUT!!!!!!!!
 
 
 def print_categories():
@@ -399,7 +351,6 @@ def print_manual():
       print('Type any categories for for a detailed list of items')
       print('Type any food items to add to your order [BUGGY]')
       print('Type "remove" <food item> to remove an item [BUGGY]')
-      print('Type "remove" <food item> to remove an item [BUGGY]')
 
 
 def check_input(user_input):
@@ -413,46 +364,49 @@ def check_input(user_input):
         if foods['item'].lower() == user_input.lower():
             return True
     else:
-        print('Invalid characters')
-        ask_question()
-   
+        return
 
+        
 def add_food_order(user_input): #bug must fix logic when an item has two words cannot split ie Key Lime 20
-    item_quantity = user_input.lower().split()
+    item_quantity = user_input.split()
     try:
         for food in MENU:
             if len(item_quantity) > 1 and item_quantity[0].lower() == food['item'].lower():  #if user enters a space
                 food['quantity'] += int(item_quantity[1])
-                # print('{} order of {} have been added to the meal'.format(food['quantity'], item_quantity[0]))
-                # print()
                 return [food['item'], food['quantity']]
             elif item_quantity[0].lower() == food['item'].lower():
                 food['quantity'] += 1
-                # print('{} order of {} have been added to the meal'.format(food['quantity'], item_quantity[0]))
-                # print()
                 return [food['item'], food['quantity']]
-    except ValueError:
+    except TypeError:
         print('Enter a valid selection')
-        return run()
-
-
+        ask_question()
+        
+        
 def remove_food_order(user_input):
     """ Function that takes a user input argument and compares to the menu data
     """
+    item = user_input.split()[1]
     for food in MENU:
-        if user_input == food['item']:
-            if food['quantity'] > 0:
-                food['quantity'] -= 1
-                print('{} order of {} have been removed'.format(food['quantity'], user_input))
-                print()
-                
-            else:
-                print('There are no {} in your order'.format(item))
-    
+        # print(item.lower() + '== ' + food['item'].lower())  # test line
+        try:
+            if item.lower() == food['item'].lower():
+                if food['quantity'] > 0:      
+                    food['quantity'] -= 1
+                    item_total()
+                    print('{} order of {} have been removed'.format(food['quantity'], item))
+                    print('Your current total is ${0:.2f}'.format(total_order_price()))
+                    return
+                else:
+                    print('There are {} {} in your order'.format(food['quantity'], item))
+                    return
+        except ValueError:
+            print('Invalid Menu Item')
+            return
+
 
 def item_total():
     for food in MENU:
-        food['total'] = int(food['quantity']) * int(food['price']) #create new key & value
+        food['total'] = int(food['quantity']) * int(food['price'])
 
 
 def total_order_price():
@@ -473,14 +427,12 @@ def print_receipt():
     print('=' * 50)
     for food in MENU:
         if food['quantity'] > 0:
-            print("{} x {} {}".format(food['item'], int(food['quantity']), int(food['total'])))
+            print('{0:} x{1:} {2:' '>35}'.format(food['item'], food['quantity'], food['total']))
     print('-' * 50)
-    #subtotal
-    print('Subtotal {:>40}'.format(total_price))
-    #Sales Tax
-    print('Sales Tax {:>38}'.format(round(total_price * TAX, 2)))
+    print('{0:} ${1:' '>35}'.format('Subtotal', total_price))
+    print('{0:} ${1:' '>35}'.format('Sales Tax', round(total_price * TAX, 2)))
     print('-' * 10)
-    print('Total {:>45}'.format(round(total_price * TOTALTAX, 2)))
+    print('{0:} ${1:' '>35}'.format('Total', round(total_price * TOTALTAX, 2)))
     print('*' * 50)
 
 
@@ -491,30 +443,31 @@ def run():
     
     while True:
         user_input = ask_question()
+        
         if user_input == 'order':
             print_receipt()
         elif user_input == 'man':
             print_manual()
         elif user_input == 'menu':
-            print_menu()
-        elif user_input == 'category':  # prints a list of category menu 
+            print_default_menu()
+        elif user_input == 'category': 
             print_categories()
-        elif user_input in CATEGORIES:  # must print details of a menu category
+        elif user_input.capitalize() in CATEGORIES:
             print_category_details(user_input)
         elif 'remove' in user_input:
             remove_food_order(user_input)
         elif check_input(user_input) is True:
-            # print('Enter <food item> space <quantity>')
             item_added = add_food_order(user_input)
             print('{} order of {} have been added to the meal'.format(item_added[0], item_added[1]))
             print()
         else:
-            ask_question()
+              print('Type "man" for options')
+       
 
-        # for food in order_list:
-        #     if food['items'] == menu_order:
-        #         print('{} order of {} have been added to your meal'.format(food['count'], food['items']))
 
 
 if __name__ == '__main__':
-    run()
+    try:
+        run()
+    except KeyboardInterrupt:
+        exit()
