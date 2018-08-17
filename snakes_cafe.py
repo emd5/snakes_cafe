@@ -368,20 +368,23 @@ def check_input(user_input):
 
         
 def add_food_order(user_input): #bug must fix logic when an item has two words cannot split ie Key Lime 20
-    item_quantity = user_input.split()
+    whole_string = user_input.split()
+    print(whole_string)
+    food_item = ' '.join(whole_string[:-1])
+    print(food_item)
     try:
         for food in MENU:
-            if len(item_quantity) > 1 and item_quantity[0].lower() == food['item'].lower():  #if user enters a space
-                food['quantity'] += int(item_quantity[1])
+            if len(whole_string) > 1 and food_item.lower() == food['item'].lower():  #if user enters a space
+                food['quantity'] += int(whole_string[-1])
                 return [food['item'], food['quantity']]
-            elif item_quantity[0].lower() == food['item'].lower():
+            elif food_item.lower() == food['item'].lower():
                 food['quantity'] += 1
                 return [food['item'], food['quantity']]
     except TypeError:
         print('Enter a valid selection')
         ask_question()
         
-        
+
 def remove_food_order(user_input):
     """ Function that takes a user input argument and compares to the menu data
     """
