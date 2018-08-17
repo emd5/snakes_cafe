@@ -9,6 +9,17 @@ This functionality of a point of sale restaurant system using basic Python tools
 
 
 ## API
-This is a python script
+ A python script
+
+
+## CHANGELOG
+
+2018-08-15 
+======
+
+- Added categories option for when user inputs a category selection.
+- Refactored menu data structure to a dictionaries inside of a list.
+- Each function was changed based from the new menu data structure.
+
 
 
