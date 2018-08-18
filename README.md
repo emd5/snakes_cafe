@@ -34,10 +34,9 @@ This program python script
 
 ### 2018-08-18
 ======
-- Included doc strings in each function
-- Implemented a function  to compare an input item in the menu list
-- Fix string formatting to print the receipt
-- Created a help file option for user to
-- If the provided separate menu file isn’t a CSV file, alert the user with an appropriate error message. Note: the user
-should never see an actual Python Exception
+- [x] Included doc strings in each function
+- [x] Implemented a function  to compare an input item in the menu list
+- [x] Fix string formatting to print the receipt
+- [] If the provided separate menu file isn’t a CSV file, alert the user with an appropriate error message. Note: the user should never see an actual Python Exception
+- [x] Created an order class with respective methods add_item, remove_item, display_order, print_receipt
 
