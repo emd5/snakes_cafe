@@ -6,298 +6,14 @@ import csv
 WIDTH = 50
 TAX = .106
 TOTALTAX = 1.10
-# MENU = []
-# MENU = [
-#   {
-#     'category': 'desserts',
-#     'item': 'Ice cream',
-#     'quantity': 0,
-#     'price': 1.95,
-#   },
-#   {
-#     'category': 'desserts',
-#     'item': 'Cake',
-#     'quantity': 0,
-#     'price': 2.50,
-#   },
-#   {
-#     'category': 'desserts',
-#     'item': 'Pie',
-#     'quantity': 0,
-#     'price': 5.50,
-#   },
-#   {
-#     'category': 'desserts',
-#     'item': 'Cupcake',
-#     'quantity': 0,
-#     'price': 6.50,
-#   },
-#   {
-#     'category': 'desserts',
-#     'item': 'Macaron',
-#     'quantity': 0,
-#     'price': 1.50,
-#   },
-#   {
-#     'category': 'desserts',
-#     'item': 'Coconut',
-#     'quantity': 0,
-#     'price': 8.50,
-#   },
-#   {
-#     'category': 'desserts',
-#     'item': 'Key lime',
-#     'quantity': 0,
-#     'price': 9.50,
-#   },
-#   {
-#     'category': 'desserts',
-#     'item': 'Pumpkin Pie',
-#     'quantity': 0,
-#     'price': 3.50,
-#   },
-#   {
-#     'category': 'desserts',
-#     'item': 'cream and fruit',
-#     'quantity': 0,
-#     'price': 3.50,
-#   },
-#   {
-#     'category': 'drinks',
-#     'item': 'Coffee',
-#     'quantity': 0,
-#     'price': 4.50,
-#   },
-#   {
-#     'category': 'drinks',
-#     'item': 'Tea',
-#     'quantity': 0,
-#     'price': 1.50,
-#   },
-#   {
-#     'category': 'drinks',
-#     'item': 'Blood of the Innocent',
-#     'quantity': 0,
-#     'price': 9.50,
-#   },
-#   {
-#     'category': 'drinks',
-#     'item': 'Whiskey',
-#     'quantity': 0,
-#     'price': 8.50,
-#   },
-#   {
-#     'category': 'drinks',
-#     'item': 'Vodka',
-#     'quantity': 0,
-#     'price': 4.50,
-#   },
-#   {
-#     'category': 'drinks',
-#     'item': 'Sparkling Wine',
-#     'quantity': 0,
-#     'price': 1.50,
-#   },
-#   {
-#     'category': 'drinks',
-#     'item': 'Juice',
-#     'quantity': 0,
-#     'price': 4.50,
-#   },
-#   {
-#     'category': 'drinks',
-#     'item': 'Jungle juice',
-#     'quantity': 0,
-#     'price': 78.50,
-#   },
-#   {
-#     'category': 'drinks',
-#     'item': 'Gin',
-#     'quantity': 0,
-#     'price': 4.00,
-#   },
-#   {
-#     'category': 'drinks',
-#     'item': 'Gin & Tonic',
-#     'quantity': 0,
-#     'price': 10.00,
-#   },
-#   {
-#     'category': 'sides',
-#     'item': 'Veggie fries',
-#     'quantity': 0,
-#     'price': 4.0,
-#   },
-#   {
-#     'category': 'sides',
-#     'item': 'Fries',
-#     'quantity': 0,
-#     'price': 4.0,
-#   },
-#   {
-#     'category': 'sides',
-#     'item': 'Potato',
-#     'quantity': 0,
-#     'price': 3.00,
-#   },
-#   {
-#     'category': 'sides',
-#     'item': 'Garlic',
-#     'quantity': 0,
-#     'price': 5.00,
-#   },
-#   {
-#     'category': 'sides',
-#     'item': 'Biscuits',
-#     'quantity': 0,
-#     'price': 7.00,
-#   },
-#   {
-#     'category': 'sides',
-#     'item': 'Mashed Tots',
-#     'quantity': 0,
-#     'price': 9.00,
-#   },
-#   {
-#     'category': 'sides',
-#     'item': 'Garlic',
-#     'quantity': 0,
-#     'price': 4.70,
-#   },
-#   {
-#     'category': 'sides',
-#     'item': 'Mashed Tots',
-#     'quantity': 0,
-#     'price': 1.75,
-#   },
-#   {
-#     'category': 'sides',
-#     'item': 'Biscuits',
-#     'quantity': 0,
-#     'price': 3.25,
-#   },
-#   {
-#     'category': 'sides',
-#     'item': 'Chicken Bites',
-#     'quantity': 0,
-#     'price': 2.25,
-#   },
-#   {
-#     'category': 'entrees',
-#     'item': 'Salmon',
-#     'quantity': 0,
-#     'price': 25.95,
-#   },
-#   {
-#     'category': 'entrees',
-#     'item': 'Steak',
-#     'quantity': 0,
-#     'price': 16.25,
-#   },
-#   {
-#     'category': 'entrees',
-#     'item': 'Meat Tornado',
-#     'quantity': 0,
-#     'price': 16.25,
-#   },
-#   {
-#     'category': 'entrees',
-#     'item': 'A Literal Garden',
-#     'quantity': 0,
-#     'price': 16.25,
-#   },
-#   {
-#     'category': 'entrees',
-#     'item': 'Surf and Turf',
-#     'quantity': 0,
-#     'price': 16.25,
-#   },
-#   {
-#     'category': 'entrees',
-#     'item': 'Ribeye',
-#     'quantity': 0,
-#     'price': 16.25,
-#   },
-#   {
-#     'category': 'entrees',
-#     'item': 'Lobster',
-#     'quantity': 0,
-#     'price': 16.25,
-#   },
-#   {
-#     'category': 'entrees',
-#     'item': 'Clams',
-#     'quantity': 0,
-#     'price': 16.25,
-#   },
-#   {
-#     'category': 'entrees',
-#     'item': 'Mussels',
-#     'quantity': 0,
-#     'price': 16.25,
-#   },
-#   {
-#     'category': 'appetizers',
-#     'item': 'Wings',
-#     'quantity': 0,
-#     'price': 4.25,
-#   },
-#   {
-#     'category': 'appetizers',
-#     'item': 'Cookies',
-#     'quantity': 0,
-#     'price': 6.5,
-#   },
-#   {
-#     'category': 'appetizers',
-#     'item': 'Spring Rolls',
-#     'quantity': 0,
-#     'price': 1.5,
-#   },
-#   {
-#     'category': 'appetizers',
-#     'item': 'Armadillo Eggs',
-#     'quantity': 0,
-#     'price': 2.5,
-#   },
-#   {
-#     'category': 'appetizers',
-#     'item': 'Jalapeno Pop',
-#     'quantity': 0,
-#     'price': 9.5,
-#   },
-#   {
-#     'category': 'appetizers',
-#     'item': 'Fries',
-#     'quantity': 0,
-#     'price': 8.5,
-#   },
-#   {
-#     'category': 'appetizers',
-#     'item': 'Alligator Skins',
-#     'quantity': 0,
-#     'price': 6.5,
-#   },
-#   {
-#     'category': 'appetizers',
-#     'item': 'Beef Jerky',
-#     'quantity': 0,
-#     'price': 3.5,
-#   },
-#   {
-#     'category': 'appetizers',
-#     'item': 'Eggrolls',
-#     'quantity': 0,
-#     'price': 3.5,
-#   },
-# ]
+
 CATEGORIES = ['Appetizers', 'Sides', 'Entrees', 'Drinks', 'Desserts']
 
 
 class Order:
 
     def __init__(self, uuid):
-        self.receipt = {'subtotal':0}
+        self.receipt = {'subtotal': 0}
         self.id = str(uuid.uuid4())
 
     def __repr__(self):
@@ -332,8 +48,8 @@ class Order:
 
 
 def greeting():
-    """Function which will greet the user when the application executes for
-    the first time.
+    """
+    A displays a greeting when program is executed
     """
     ln_one = 'Welcome to my Snakes Cafe'
     ln_two = 'Please see our menu below.'
@@ -347,15 +63,12 @@ def greeting():
         {(' ' * ((WIDTH - len(ln_three)) // 2)) + ln_three + (' ' * ((WIDTH - len(ln_three)) // 2))}
         {'*' * WIDTH}
     '''))
-    # print_default_menu()
-# function to load a custom menu from csv file
-
-
-
-    # print('type "man" for help')
 
 
 def build_menu(menu_csv):
+    """
+    Imports a csv file and generates a menu
+    """
     MENU = []
     with open(menu_csv, 'r') as rows:
         try:
@@ -366,6 +79,7 @@ def build_menu(menu_csv):
                 item['item'] = row['item']
                 item['quantity'] = int(row['quantity'])
                 item['price'] = float(row['price'])
+                item['stock'] = int(row['stock'])
                 MENU.append(item)
             # print_menu()
             return MENU
@@ -373,7 +87,10 @@ def build_menu(menu_csv):
             print('File not found or not a CSV file')
 
 
-def print_menu(menu_list):  # a default menu from above and an imported csv file
+def print_menu(menu_list):
+    """
+    Displays the menu
+    """
     for category in CATEGORIES:
         print_category_details(category, menu_list)
     print('*' * 38)
@@ -382,7 +99,9 @@ def print_menu(menu_list):  # a default menu from above and an imported csv file
 
 
 def print_category_details(category, menu_list):
-
+    """
+    Displays the menu details when user enters a menu category
+    """
     print(category)
     print('-' * 10)
     for foods in menu_list:
@@ -392,16 +111,23 @@ def print_category_details(category, menu_list):
 
 
 def ask_question():
+    """
+    Prompt for user input and is case-insensitive and strips any before or trailing whitespace
+    """
     return input(' > ').lower().strip()  # check here IF BROKEN INPUT!!!!!!!!
 
 
 def ask_menu_option():
+    """
+    Displays the menu option for user to input
+    """
     print('Which menu would you like?')
     print('Enter "default" or "custom"')
 
 
 def print_categories():
-    """A function that prints a list of categories from the menu
+    """
+    A function that prints a list of categories from the menu
     """
     print('-'* 20)
     print('Here are a list of the category Menus')
@@ -411,16 +137,19 @@ def print_categories():
 
 
 def print_manual():
-      print('Type "menu" for menu options')
-      print('Type "category" for menu categories')
-      print('Type any categories for for a detailed list of items')
-      print('Type any <food items> to add to your order')
-      print('Type "remove" <food item> to remove an item')
+    """
+    Displays a help feature for the user to input options
+    """
+    print('Type "menu" for menu options')
+    print('Type "category" for menu categories')
+    print('Type any categories for for a detailed list of items')
+    print('Type any <food items> to add to your order')
+    print('Type "remove" <food item> to remove an item')
 
 
 def check_input(user_input, menu_list):
-    """Function that returns a boolean when user input is in the menu data,
-    otherwise exits program
+    """
+    Function that excepts an item and/or quantity and validates both
     """
     if user_input.lower() == "quit":
         exit('***   Thank you for Eating with Us! *** ')
@@ -429,11 +158,12 @@ def check_input(user_input, menu_list):
     if any(char.isdigit() for char in user_input):
         whole_string = user_input.split()
         food_item = ' '.join(whole_string[:-1])
-        for foods in menu_list:
-            if foods['item'].lower() == food_item.lower():
-                return [food_item, int(whole_string[-1])]
-
-    # elif not any(char.isdigit() for char in user_input):
+        if int(whole_string[-1]) < 1:
+            print('You must enter a positive number')
+        else:
+            for foods in menu_list:
+                if foods['item'].lower() == food_item.lower():
+                    return [food_item, int(whole_string[-1])]
     else:
         for foods in menu_list:
             if foods['item'].lower() == user_input.lower():
@@ -441,11 +171,29 @@ def check_input(user_input, menu_list):
 
 
 def add_food_order(user_input, menu_list):
+    """
+    Validates user input against the menu data, if the item does
+    not exceed the item in stock, add item to the order, otherwise false
+    """
     for food in menu_list:
-        if user_input[0].lower() == food['item'].lower():
-            # print(user_input[0])
+        if user_input[0].lower() == food['item'].lower() and (food['quantity'] + user_input[1]) < food['stock']:
             food['quantity'] += user_input[1]
+            print('{} order of {} have been added to the meal'.format(user_input[1], user_input[0]))
+        elif user_input[0].lower() == food['item'].lower() and (food['quantity'] + user_input[1]) > food['stock']:
+            print('The amount you chose {} is greater than the amount in stock {}'.format(user_input[1], food['stock']))
 
+
+def is_item_in_menu(user_input, menu_list):
+    """
+    Add all food items into a new list, then validate user input is in list
+    """
+    food_list = []
+    for food in menu_list:
+        food_list.append(food['item'].lower())
+    if user_input.lower() in food_list:
+        return True
+    else:
+        print("Item not found")
 
     # try:
     # print(type(user_input))
@@ -469,7 +217,8 @@ def add_food_order(user_input, menu_list):
 
 
 def remove_food_order(user_input, menu_list):
-    """ Function that takes a user input argument and compares to the menu data
+    """
+    Removes an item from the menu if in the list
     """
     item = user_input.split()[1]
     for food in menu_list:
@@ -490,11 +239,17 @@ def remove_food_order(user_input, menu_list):
 
 
 def item_total(menu_list):
+    """
+    Calculates the order total amount
+    """
     for food in menu_list:
         food['total'] = int(food['quantity']) * float(food['price'])
 
 
 def total_order_price(menu_list):
+    """
+    Calculate the total amount
+    """
     sum_total = 0
     for food in menu_list:
        sum_total += food['total']
@@ -502,6 +257,9 @@ def total_order_price(menu_list):
 
 
 def print_receipt(menu_list):
+    """
+    Displays the receipt
+    """
     item_total(menu_list)
     total_price = total_order_price(menu_list)
     print('*' * 50)
@@ -550,10 +308,11 @@ def run():
         # elif check_input(user_input, MENU) is True:
         elif check_input(user_input, MENU) is not None:
             user_order = check_input(user_input, MENU)
+            print(is_item_in_menu(user_order[0], MENU))
             add_food_order(user_order, MENU)
             # item_added = add_food_order(user_input, MENU)
             # print(item_added)
-            print('{} order of {} have been added to the meal'.format(user_order[1], user_order[0]))
+
             # print()
         else:
             print('Type "man" for options')
