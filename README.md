@@ -11,7 +11,7 @@ This functionality of a point of sale restaurant system using basic Python tools
  A python script
 
 
-## CHANGELOG
+## Changelog
 
 ### 2018-08-15 
 ======
@@ -26,3 +26,9 @@ This program python script
 ======
 - Addressed and fixed bugs in add and remove methods
 - Pytest add & remove methods
+
+### 2018-08-17
+======
+- Include default and custom menu options
+- Create an order class with attributes and methods
+- 

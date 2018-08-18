@@ -1,0 +1,49 @@
+category,item,quantity,price,stock
+Desserts,Ice Cream,0,3.00,100
+Desserts,Cake,0,9.00,100
+Desserts,Samwich,0,3.00,100
+Desserts,Klondike,0,5.00,100
+Desserts,Apple Pie,0,1.00,100
+Desserts,Cookies,0,2.00,100
+Desserts,Key Lime Pie,0,7.00,100
+Desserts,Chocolate Pie,0,1.00,100
+Desserts,Pie,0,1.20,100
+Drinks,Sprite,0,3.80,100
+Drinks,Pepsi,0,8.00,100
+Drinks,Whiskey,0,1.00,100
+Drinks,Vodka,0,1.00,100
+Drinks,Blood of the Innocent,0,400.00,100
+Drinks,Water,0,19.99,100
+Drinks,Wine,0,14.00,100
+Drinks,Milk,0,1.00,100
+Drinks,Tea Milk,0,1.00,100
+Sides,Fries,0,1.00,100
+Sides,Tuna,0,1.00,100
+Sides,Tater Tots,0,4.00,100
+Sides,Shrooms,0,1.00,100
+Sides,Pig Skin,0,3.00,100
+Sides,Elephant Skin,0,1.00,100
+Sides,Veggies,0,1.00,100
+Sides,Mashed Potatoes,0,1.00,100
+Sides,Gravy,0,1.00,100
+Appetizers,Wings,0,1.99,100
+Appetizers,Calamari,0,1.00,100
+Appetizers,Spam,0,1.09,100
+Appetizers,Musubi,0,1.00,100
+Appetizers,Dumplings,0,1.00,100
+Appetizers,Rice,0,1.80,100
+Appetizers,Lettuce,0,3.00,100
+Appetizers,Carrots,0,4.50,100
+Appetizers,Apple,0,1.34,100
+Entrees,Steak,0,1.59,100
+Entrees,Salmon,0,2.00,100
+Entrees,Ribeye,0,1.00,100
+Entrees,Crabs,0,4.00,100
+Entrees,Clams,0,1.00,100
+Entrees,Mussels,0,10.00,100
+Entrees,Chowder,0,20.00,100
+Entrees,T bone,0,100.00,100
+Entrees,Spaghetti,0,15.70,100
+Entrees,Squid,0,1.50,100
+
+
