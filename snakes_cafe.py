@@ -6,45 +6,122 @@ import csv
 WIDTH = 50
 TAX = .106
 TOTALTAX = 1.10
-
 CATEGORIES = ['Appetizers', 'Sides', 'Entrees', 'Drinks', 'Desserts']
 
 
 class Order:
 
-    def __init__(self, uuid):
+    def __init__(self):
         self.receipt = {'subtotal': 0}
-        self.id = str(uuid.uuid4())
+        self.id = str(uuid4())
 
     def __repr__(self):
         return 'Order {} | Items: {} | Total: {}'.format(self.id, self.receipt['subtotal'], len(self.receipt))
 
-
     def __len__(self):
         return len(self.receipt)
 
+    def order_uuid(self):
+        """
+        Generates a UUID for each order for the receipt
+        """
+        return uuid4()
 
-    def order_uuid():
-        return uuid4
+    def add_item(self, user_input, menu_list):
+        """
+        Validates user input against the menu data, if the item does
+        not exceed the item in stock, add item to the order, otherwise false
+        takes an item name and a quantity as arguments.There should be a
+        default value for quantity if none is given
+        """
+        for food in menu_list:
+            if user_input[0].lower() == food['item'].lower() and (food['quantity'] + user_input[1]) < food['stock']:
+                food['quantity'] += user_input[1]
+                print()
+                print('{} order of {} have been added to the meal'.format(user_input[1], user_input[0]))
+                print()
+            elif user_input[0].lower() == food['item'].lower() and (food['quantity'] + user_input[1]) > food['stock']:
+                print()
+                print('The amount you chose {} is greater than the amount in stock {}'.format(user_input[1], food['stock']))
+                print()
 
+    def remove_item(self, user_input, menu_list):
+        """
+        takes an item name and a quantity as arguments. There should be a
+        default value for quantity if none is given.
+        """
+        item = user_input[0]
+        amount = user_input[1]
 
-    def add_item():
-        pass
+        for food in menu_list:
+            try:
+                if item.lower() == food['item'].lower():
+                    if food['quantity'] > 0:
+                        food['quantity'] -= amount
+                        print()
+                        print('You have {} order(s) of {} in your order'.format(food['quantity'], item))
+                        print('Your current subtotal is ${0:.2f}'.format(total_order_price(menu_list)))
+                        print()
+                        return
+                    else:
+                        print()
+                        print('There are {} {} in your order'.format(food['quantity'], item))
+                        print()
+                        return
+            except ValueError:
+                print('Invalid Menu Item')
+                return
 
+    def display_order(self, menu_list):
+        """
+        Prints the user’s current order to the console
+        """
+        item_total(menu_list)
+        total_price = total_order_price(menu_list)
+        print('*' * 50)
+        print('The Snakes Cafe')
+        print('"Eatability Counts"')
+        print()
+        print('Order: ' + str(self.id))
+        print('=' * 50)
+        for food in menu_list:
+            if int(food['quantity']) > 0:
+                print('{:' '<10} x{:' '<29} ${:>.2f}'.format(food['item'], str(food['quantity']), float(food['total'])))
+        print('-' * 50)
+        print('{:' '<41} ${:.2f}'.format('Subtotal', total_price))
+        print('{:' '<41} ${:.2f}'.format('Sales Tax', round(total_price * TAX, 2)))
+        print('-' * 10)
+        print('{:' '<41} ${:.2f}'.format('Total', round(total_price * TOTALTAX, 2)))
+        print('*' * 50)
 
-    def remove_item():
-        pass
+    def print_receipt(self, menu_list):
+        """
+        Creates a file containing the text of the user’s full order
+        """
+        total_price = total_order_price(menu_list)
+        subtotal = '{:' '<41} ${:.2f}'.format('Subtotal', total_price)
+        tax = '{:' '<41} ${:.2f}'.format('Sales Tax', round(total_price * TAX, 2))
+        total = '{:' '<41} ${:.2f}'.format('Total', round(total_price * TOTALTAX, 2))
 
+        create_receipt = open('order-' + self.id+'.txt', 'w+')
+        create_receipt.write('*' * 50 + '\n')
+        create_receipt.write('The Snakes Cafe \n')
+        create_receipt.write('" Eatability Counts "\n')
+        create_receipt.write('\n')
+        create_receipt.write('Order: ' + str(self.id) + '\n')
+        create_receipt.write('*' * 50 + '\n')
+        create_receipt.write('\n')
+        for food in menu_list:
+            if int(food['quantity']) > 0:
+                create_receipt.write('{:' '<10} x{:' '<29} ${:>.2f}\n'.format(food['item'], str(food['quantity']), float(food['total'])))
+        create_receipt.write('-' * 50 + '\n')
+        create_receipt.write(subtotal + '\n')
+        create_receipt.write(tax + '\n')
+        create_receipt.write('-' * 10 + '\n')
+        create_receipt.write(total + '\n')
+        create_receipt.write('*' * 50 + '\n')
 
-    def display_order():
-        pass
-
-
-    def print_receipt():
-        pass
-        # write new file to a relative path
-        # with open (f'order-{current.id}.txt', 'w') as f:
-        # f.write(receipt_file)
+        create_receipt.close()
 
 
 def greeting():
@@ -154,7 +231,8 @@ def check_input(user_input, menu_list):
     if user_input.lower() == "quit":
         exit('***   Thank you for Eating with Us! *** ')
         return
-
+    if 'remove' in user_input.lower():
+        user_input = user_input.replace('remove ', '')
     if any(char.isdigit() for char in user_input):
         whole_string = user_input.split()
         food_item = ' '.join(whole_string[:-1])
@@ -170,19 +248,6 @@ def check_input(user_input, menu_list):
                 return [user_input, 1]
 
 
-def add_food_order(user_input, menu_list):
-    """
-    Validates user input against the menu data, if the item does
-    not exceed the item in stock, add item to the order, otherwise false
-    """
-    for food in menu_list:
-        if user_input[0].lower() == food['item'].lower() and (food['quantity'] + user_input[1]) < food['stock']:
-            food['quantity'] += user_input[1]
-            print('{} order of {} have been added to the meal'.format(user_input[1], user_input[0]))
-        elif user_input[0].lower() == food['item'].lower() and (food['quantity'] + user_input[1]) > food['stock']:
-            print('The amount you chose {} is greater than the amount in stock {}'.format(user_input[1], food['stock']))
-
-
 def is_item_in_menu(user_input, menu_list):
     """
     Add all food items into a new list, then validate user input is in list
@@ -194,48 +259,6 @@ def is_item_in_menu(user_input, menu_list):
         return True
     else:
         print("Item not found")
-
-    # try:
-    # print(type(user_input))
-    # if any(char.isdigit() for char in user_input):
-    #     print('1: ' + user_input)
-    #     whole_string = user_input.split()
-    #     if len(whole_string) > 1:
-    #         food_item = ' '.join(whole_string[:-1])
-    #     for food in menu_list:
-    #         if food_item.lower() == food['item'].lower():
-    #             food['quantity'] += int(whole_string[-1])
-    #             return [food['item'], food['quantity']]
-    # else:
-    #     for food in menu_list:
-    #         if user_input.lower() == food['item'].lower():
-    #             food['quantity'] += 1
-    #             return [food['item'], food['quantity']]
-    # except TypeError:
-    #     print('Enter a valid selection')
-    #     ask_question()
-
-
-def remove_food_order(user_input, menu_list):
-    """
-    Removes an item from the menu if in the list
-    """
-    item = user_input.split()[1]
-    for food in menu_list:
-        try:
-            if item.lower() == food['item'].lower():
-                if food['quantity'] > 0:
-                    food['quantity'] -= 1
-                    item_total(menu_list)
-                    print('{} order of {} have been removed'.format(food['quantity'], item))
-                    print('Your current total is ${0:.2f}'.format(total_order_price(menu_list)))
-                    return
-                else:
-                    print('There are {} {} in your order'.format(food['quantity'], item))
-                    return
-        except ValueError:
-            print('Invalid Menu Item')
-            return
 
 
 def item_total(menu_list):
@@ -250,33 +273,11 @@ def total_order_price(menu_list):
     """
     Calculate the total amount
     """
+    item_total(menu_list)
     sum_total = 0
     for food in menu_list:
-       sum_total += food['total']
+        sum_total += food['total']
     return sum_total
-
-
-def print_receipt(menu_list):
-    """
-    Displays the receipt
-    """
-    item_total(menu_list)
-    total_price = total_order_price(menu_list)
-    print('*' * 50)
-    print('The Snakes Cafe')
-    print('"Eatability Counts"')
-    print()
-    print('Order: ' + str(uuid4()))
-    print('=' * 50)
-    for food in menu_list:
-        if int(food['quantity']) > 0:
-            print('{0:} x{1:} {2:' '>35}'.format(food['item'], str(food['quantity']), str(food['total'])))
-    print('-' * 50)
-    print('{0:} ${1:' '>35}'.format('Subtotal', total_price))
-    print('{0:} ${1:' '>35}'.format('Sales Tax', round(total_price * TAX, 2)))
-    print('-' * 10)
-    print('{0:} ${1:' '>35}'.format('Total', round(total_price * TOTALTAX, 2)))
-    print('*' * 50)
 
 
 def run():
@@ -294,7 +295,9 @@ def run():
             MENU = build_menu('custom.csv')
             print_menu(MENU)
         elif user_input == 'order':
-            print_receipt(MENU)
+            order.display_order(MENU)
+        elif user_input == 'receipt':
+            order.print_receipt(MENU)
         elif user_input == 'menu':
             print_menu(MENU)
         elif user_input == 'man':
@@ -304,21 +307,18 @@ def run():
         elif user_input.capitalize() in CATEGORIES:
             print_category_details(user_input, MENU)
         elif 'remove' in user_input:
-            remove_food_order(user_input, MENU)
-        # elif check_input(user_input, MENU) is True:
+            remove_user_order = check_input(user_input, MENU)
+            order.remove_item(remove_user_order, MENU)
         elif check_input(user_input, MENU) is not None:
             user_order = check_input(user_input, MENU)
-            print(is_item_in_menu(user_order[0], MENU))
-            add_food_order(user_order, MENU)
-            # item_added = add_food_order(user_input, MENU)
-            # print(item_added)
-
-            # print()
+            is_item_in_menu(user_order[0], MENU)
+            order.add_item(user_order, MENU)
         else:
-            print('Type "man" for options')
+            print('Invalid Input. Type "man" for options')
 
 
 if __name__ == '__main__':
+    order = Order()
     try:
         run()
     except KeyboardInterrupt:
