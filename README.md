@@ -1,5 +1,5 @@
 # Snakes Cafe
-**Author**: Liz Mahoney                                                   
+**Author**: Liz Mahoney
 **Version**: 1.0.0 (increment the patch/fix version number up if you make more commits past your first submission)
 
 ## Overview
@@ -11,9 +11,9 @@ This functionality of a point of sale restaurant system using basic Python tools
  A python script
 
 
-## CHANGELOG
+## Changelog
 
-### 2018-08-15 
+### 2018-08-15
 ======
 
 - Added categories option for when user inputs a category selection.
@@ -22,7 +22,22 @@ This functionality of a point of sale restaurant system using basic Python tools
 
 This program python script
 
-### 2018-08-16 
+### 2018-08-16
 ======
 - Addressed and fixed bugs in add and remove methods
 - Pytest add & remove methods
+
+### 2018-08-17
+======
+- Include default and custom menu options
+- Create an order class with attributes and methods
+
+### 2018-08-18
+======
+- Included doc strings in each function
+- Implemented a function  to compare an input item in the menu list
+- Fix string formatting to print the receipt
+- Created a help file option for user to
+- If the provided separate menu file isn’t a CSV file, alert the user with an appropriate error message. Note: the user
+should never see an actual Python Exception
+
