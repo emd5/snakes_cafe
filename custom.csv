@@ -1,6 +1,14 @@
 category,item,quantity,price,stock
 Appetizers,Dumplings,0,3.0,100
-Appetizers,String Beans,0,4.50,100
+Appetizers,String Beans,0,4.50,30
 Desserts,Taro Bread,0,5.00,100
-Desserts,Muffin,0,1.55,100
-Entrees,Baked Salmon,0,15.99,100
+Desserts,Muffin,0,2.55,100
+Entrees,Baked Salmon,0,9.99,20
+Sides,Liver,0,15.99,100
+Sides,Jam,0,2.80,30
+Drinks,Gin,0,5.99,100
+Drinks,Smoothie,0,1.99,10
+Drinks,Wine,0,14.00,100
+Drinks,Milk,0,1.00,100
+Drinks,Tea Milk,0,1.00,100
+

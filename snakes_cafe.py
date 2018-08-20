@@ -31,8 +31,8 @@ class Order:
         """
         Validates user input against the menu data, if the item does
         not exceed the item in stock, add item to the order, otherwise false
-        takes an item name and a quantity as arguments.There should be a
-        default value for quantity if none is given
+        takes an item name and a quantity as arguments. A default value for
+        quantity if none is given
         """
         for food in menu_list:
             if user_input[0].lower() == food['item'].lower() and (food['quantity'] + user_input[1]) < food['stock']:
@@ -47,7 +47,7 @@ class Order:
 
     def remove_item(self, user_input, menu_list):
         """
-        takes an item name and a quantity as arguments. There should be a
+        Takes an item name and a quantity as arguments. There should be a
         default value for quantity if none is given.
         """
         item = user_input[0]
@@ -155,7 +155,8 @@ def help_file_menu_message():
 
 def ask_question():
     """
-    Prompt for user input and is case-insensitive and strips any before or trailing whitespace
+    Prompt for user input and is case-insensitive and strips any before or
+    trailing whitespace
     """
     return input(' > ').lower().strip()  # check here IF BROKEN INPUT!!!!!!!!
 
@@ -208,7 +209,7 @@ def print_manual():
 
 def check_input(user_input, menu_list):
     """
-    Function that excepts an item and/or quantity and validates both
+    Function that takes an item and/or quantity and validates against the data
     """
     if user_input.lower() == "quit":
         exit('***   Thank you for Eating with Us! *** ')
@@ -264,7 +265,7 @@ def total_order_price(menu_list):
 
 def build_menu(menu_input):
     """
-    Imports a csv file and generates a menu
+    Imports a .csv file and generates a menu
     """
     MENU = []
 
@@ -301,30 +302,32 @@ def run():
         elif user_input == 'custom.csv':
             MENU = build_menu('custom.csv')
             print_menu(MENU)
-        while True:
-            user_input = ask_question()
-            if user_input == 'order':
-                order.display_order(MENU)
-            elif user_input == 'receipt':
-                order.print_receipt(MENU)
-                print('Receipt printed')
-            elif user_input == 'menu':
-                print_menu(MENU)
-            elif user_input == 'man':
-                print_manual()
-            elif user_input == 'category':
-                print_categories()
-            elif user_input.capitalize() in CATEGORIES:
-                print_category_details(user_input, MENU)
-            elif 'remove' in user_input:
-                remove_user_order = check_input(user_input, MENU)
-                order.remove_item(remove_user_order, MENU)
-            elif check_input(user_input, MENU) is not None:
-                user_order = check_input(user_input, MENU)
-                is_item_in_menu(user_order[0], MENU)
-                order.add_item(user_order, MENU)
-            else:
-                print('Invalid Input. Type "man" for options')
+        else:
+            ('Enter a .csv file or type "default"')
+    while True:
+        user_input = ask_question()
+        if user_input == 'order':
+            order.display_order(MENU)
+        elif user_input == 'receipt':
+            order.print_receipt(MENU)
+            print('Receipt printed')
+        elif user_input == 'menu':
+            print_menu(MENU)
+        elif user_input == 'man':
+            print_manual()
+        elif user_input == 'category':
+            print_categories()
+        elif user_input.capitalize() in CATEGORIES:
+            print_category_details(user_input, MENU)
+        elif 'remove' in user_input:
+            remove_user_order = check_input(user_input, MENU)
+            order.remove_item(remove_user_order, MENU)
+        elif check_input(user_input, MENU) is not None:
+            user_order = check_input(user_input, MENU)
+            is_item_in_menu(user_order[0], MENU)
+            order.add_item(user_order, MENU)
+        else:
+            print('Invalid Input. Type "man" for options')
 
 
 if __name__ == '__main__':
