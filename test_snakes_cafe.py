@@ -1,4 +1,4 @@
-from snakes_cafe import snakes_cafe, order
+from snakes_cafe import snakes_cafe, Order
 import pytest
 
 
@@ -22,6 +22,10 @@ def load_menu():
     except (FileNotFoundError) as e:
         print(e + 'File not found or not a CSV file')
 
+@pytest.fixture
+def test_add_item():
+    return Order.add_item('wings',MENU)
+
 
 def test_snakes_cafe_module_exist():
     assert snakes_cafe
@@ -32,7 +36,7 @@ def test_add_food_item_lowercase():
     """
 
     expect = ['Wings', 1]
-    actual = order.add_item('wings')
+    actual = add_item('wings')
     assert expect == actual
 
 
@@ -61,4 +65,3 @@ def test_remove_food_item():
     expect = ['Wings', 0 ]
     actual = order.remove_item('remove wings')
     assert expect == actual
-
