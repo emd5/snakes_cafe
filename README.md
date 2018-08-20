@@ -40,3 +40,7 @@ This program python script
 - [] If the provided separate menu file isn’t a CSV file, alert the user with an appropriate error message. Note: the user should never see an actual Python Exception
 - [x] Created an order class with respective methods add_item, remove_item, display_order, print_receipt
 
+### 2018-08-19
+======
+- [] If the provided separate menu file isn’t a CSV file, alert the user with an appropriate error message. Note: the user should never see an actual Python Exception
+-
